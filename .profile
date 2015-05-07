@@ -63,6 +63,13 @@ alias defchmod644='chmod -R 644 . && find . -type d -exec chmod a+x {} \;'
 
 alias wget="wget --trust-server-names"
 alias vi='vim'
+myGrep() {
+    if [ -z "$1" ]; then echo "g <searchterm> <folder> [additional searchterm]"; else 
+        if [ -z ${3+x} ]; then grep -Rn $1 $2; else grep -Rn $1 $2 | grep $3; fi
+    ; fi
+}
+alias g="myGrep";
+
 export EDITOR='/usr/bin/vim'
 
 if [ ! -z "$WINDIR" ]; then
